@@ -44,9 +44,9 @@ const crearSolicitud = async (req, res) => {
 
     } catch(error){
         if(error.status === 400){
-            return res.status(400).json({
-                error: error.message
-            });
+            return res.sendFile (
+                path.join(__dirname, '../views/fail.html')
+            );
         }
 
         res.status(500).json({

@@ -1,4 +1,5 @@
 const db = require('../database/database');
+const path = require('path');
 
 const SolicitudSertificado = (
     nombre,
@@ -18,7 +19,6 @@ const SolicitudSertificado = (
                     return reject(err);
                 }
 
-                // Si existe el correo
                 if (results.length > 0) {
                     return reject({
                         status: 400,
