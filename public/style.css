@@ -283,9 +283,15 @@ footer{
 /* ========================= */
 /* FORMULARIO PROFESIONAL */
 /* ========================= */
+.form-section_index{
+    padding:70px 20px 120px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
 
 .form-section{
-    padding:80px 20px 120px;
+    padding:250px 20px 120px;
     display:flex;
     justify-content:center;
     align-items:center;

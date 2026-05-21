@@ -1,5 +1,4 @@
 const db = require('../database/database');
-const path = require('path');
 
 const SolicitudSertificado = (
     nombre,
@@ -11,7 +10,7 @@ const SolicitudSertificado = (
     return new Promise((resolve, reject) => {
 
         db.query(
-            'SELECT * FROM solicitudes WHERE correo = ?',
+            'SELECT 1 FROM solicitudes WHERE email = ? LIMIT 1',
             [correo],
             (err, results) => {
 
@@ -28,7 +27,7 @@ const SolicitudSertificado = (
 
                 db.query(
                     `INSERT INTO solicitudes
-                    (nombre, correo, documento, certificado)
+                    (nombre, email, documento, certificado)
                     VALUES (?, ?, ?, ?)`,
                     [nombre, correo, documento, certificado],
 

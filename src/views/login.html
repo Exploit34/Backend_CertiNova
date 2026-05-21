@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Iniciar Sesión - CertiNova</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+    <!-- <div class="background">
+        <div class="blur blur1"></div>
+        <div class="blur blur2"></div>
+        <div class="blur blur3"></div>
+    </div> -->
+
+    <nav>
+
+        <div class="logo" onclick="location='/api'">
+            CertiNova
+        </div>
+
+        <ul>
+            <li><a href="/api">Inicio</a></li>
+            <li><a href="#">Servicios</a></li>
+            <li><a href="#">Documentos</a></li>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+
+        <!-- <button onclick="location='/api/register'" class="btn-nav">
+            Registrarse
+        </button> -->
+
+    </nav>
+
+    <section class="form-section">
+
+        <div class="form-container">
+
+            <h2>Bienvenido de vuelta</h2>
+            <p>Inicia sesión en tu cuenta para continuar</p>
+
+            <form method="POST" action="/api/login">
+
+                <input type="email" name="email" placeholder="Correo electrónico" required>
+
+                <input type="password" name="password" placeholder="Contraseña" required>
+
+                <button type="submit">Iniciar Sesión</button>
+
+            </form>
+
+            <div style="text-align: center; margin-top: 30px; color: #cbd5e1;">
+                <p>¿No tienes cuenta? <a href="/api/register" style="color: #00ffcc; text-decoration: none; font-weight: 600;">Regístrate aquí</a></p>
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

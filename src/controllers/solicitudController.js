@@ -38,9 +38,7 @@ const crearSolicitud = async (req, res) => {
             certificado
         );
         
-        res.sendFile (
-            path.join(__dirname, '../views/success.html')
-        );
+        res.redirect('/api/success');
 
     } catch(error){
         if(error.status === 400){
