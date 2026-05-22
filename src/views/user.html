@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mi Dashboard - CertiNova</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="/style.css">
+
+<style>
+
+.user-container{
+    padding:140px 80px 80px;
+    min-height:100vh;
+    max-width:1100px;
+    margin:0 auto;
+}
+
+.user-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:40px;
+}
+
+.user-header h1{
+    font-size:48px;
+    font-weight:800;
+    margin:0;
+}
+
+.welcome-text{
+    color:#cbd5e1;
+    font-size:16px;
+}
+
+.user-header .user-info{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.profile-card{
+    background:rgba(255,255,255,0.04);
+    padding:10px 18px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.06);
+}
+
+.logout-btn{
+    padding:10px 22px;
+    border:none;
+    border-radius:10px;
+    background:#ff6b6b;
+    color:white;
+    font-weight:700;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.logout-btn:hover{
+    background:#ff5252;
+    transform:translateY(-2px);
+}
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:24px;
+    margin-bottom:40px;
+}
+
+.card-section{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.06);
+    border-radius:14px;
+    padding:22px;
+}
+
+.card-section h2{
+    font-size:22px;
+    margin-bottom:18px;
+    font-weight:700;
+}
+
+.stat-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 0;
+    border-bottom:1px solid rgba(255,255,255,0.04);
+}
+
+.stat-item:last-child{
+    border-bottom:none;
+}
+
+.stat-label{
+    color:#cbd5e1;
+    font-size:15px;
+    font-weight:500;
+}
+
+.stat-value{
+    color:#00ffcc;
+    font-size:18px;
+    font-weight:700;
+    text-align:right;
+    word-break:break-word;
+}
+
+.btn-new-request{
+    display:inline-block;
+    padding:14px 28px;
+    background:#00ffcc;
+    color:black;
+    border:none;
+    border-radius:12px;
+    font-weight:700;
+    cursor:pointer;
+    margin-top:20px;
+    transition:0.3s;
+}
+
+.btn-new-request:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 30px rgba(0,255,204,0.4);
+}
+
+.requests-table{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:24px;
+    padding:35px;
+    grid-column:1/-1;
+    overflow-x:auto;
+}
+
+.requests-table h2{
+    font-size:28px;
+    margin-bottom:25px;
+    font-weight:700;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th, td{
+    padding:16px 12px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    text-align:left;
+}
+
+th{
+    background:transparent;
+    color:#00ffcc;
+    font-weight:700;
+    font-size:14px;
+    text-transform:uppercase;
+}
+
+tr:hover{
+    background:rgba(0,255,204,0.05);
+}
+
+td{
+    color:#cbd5e1;
+}
+
+.badge{
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:12px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.badge-success{
+    background:rgba(16,185,129,0.2);
+    color:#10b981;
+}
+
+.badge-pending{
+    background:rgba(245,158,11,0.2);
+    color:#f59e0b;
+}
+
+.badge-processing{
+    background:rgba(59,130,246,0.2);
+    color:#3b82f6;
+}
+
+.action-btn{
+    padding:8px 16px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    font-weight:600;
+    font-size:12px;
+    cursor:pointer;
+    transition:0.3s;
+    margin-right:8px;
+}
+
+.action-btn:hover{
+    background:#1d4ed8;
+    transform:scale(1.05);
+}
+
+.download-btn{
+    padding:8px 16px;
+    border:none;
+    border-radius:8px;
+    background:#10b981;
+    color:white;
+    font-weight:600;
+    font-size:12px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.download-btn:hover{
+    background:#059669;
+    transform:scale(1.05);
+}
+
+.empty-state{
+    text-align:center;
+    padding:40px 20px;
+    color:#cbd5e1;
+}
+
+.empty-state-icon{
+    font-size:48px;
+    margin-bottom:15px;
+}
+
+@media(max-width:1200px){
+    .dashboard-grid{
+        grid-template-columns:1fr;
+    }
+
+    .requests-table{
+        grid-column:1;
+    }
+}
+
+@media(max-width:900px){
+    .user-container{
+        padding:100px 20px 80px;
+    }
+
+    .user-header{
+        flex-direction:column;
+        gap:20px;
+        align-items:flex-start;
+    }
+
+    .user-header h1{
+        font-size:40px;
+    }
+
+    .user-header .user-info{
+        width:100%;
+        flex-wrap:wrap;
+        gap:10px;
+    }
+
+    .card-section{
+        padding:20px;
+    }
+
+    .requests-table{
+        padding:20px;
+    }
+
+    table{
+        font-size:14px;
+    }
+
+    th, td{
+        padding:12px 8px;
+    }
+
+    .action-btn{
+        display:inline-block;
+        margin-right:8px;
+        margin-bottom:8px;
+    }
+}
+
+@media(max-width:600px){
+    .user-container{
+        padding:80px 15px 60px;
+    }
+
+    .user-header h1{
+        font-size:28px;
+    }
+
+    .user-header .user-info{
+        flex-direction:column;
+    }
+
+    .stat-label{
+        font-size:14px;
+    }
+
+    .stat-value{
+        font-size:16px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="background">
+
+<div class="blur blur1"></div>
+<div class="blur blur2"></div>
+<div class="blur blur3"></div>
+
+</div>
+
+<nav>
+
+<div class="logo">
+CertiNova
+</div>
+
+<ul>
+<li><a href="#">Mi Dashboard</a></li>
+<li><a href="#">Mis Certificados</a></li>
+<li><a href="#">Configuración</a></li>
+</ul>
+
+<!-- <button onclick="location='/logout'" class="btn-nav">
+    Cerrar Sesión
+</button> -->
+
+    <div class="user-info">
+        <div class="profile-card">
+            <span>👤 {{EMAIL_USUARIO}}</span>
+            <button class="logout-btn" onclick="location='/api/login'">Salir</button>
+        </div>
+    </div>
+
+</nav>
+
+<div class="user-container">
+
+<div class="user-header">
+    <div>
+        <h1>Mi Dashboard 📊</h1>
+        <p class="welcome-text">Bienvenido, {{NOMBRE_USUARIO}}</p>
+    </div>
+    <!-- <div class="user-info">
+        <div class="profile-card">
+            <span>👤 {{EMAIL_USUARIO}}</span>
+        </div>
+        <button class="logout-btn" onclick="location='/logout'">Salir</button>
+    </div> -->
+</div>
+
+<div class="dashboard-grid">
+
+<div class="card-section">
+    <h2>Resumen 📈</h2>
+    <div class="stat-item">
+        <span class="stat-label">Solicitudes Totales</span>
+        <span class="stat-value">{{TOTAL_SOLICITUDES}}</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-label">Certificados Obtenidos</span>
+        <span class="stat-value">{{CERTIFICADOS_OBTENIDOS}}</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-label">Pagos Realizados</span>
+        <span class="stat-value">${{PAGOS_REALIZADOS}}</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-label">En Proceso</span>
+        <span class="stat-value">{{EN_PROCESO}}</span>
+    </div>
+    <button class="btn-new-request" onclick="location='/api/nueva-solicitud'">➕ Nueva Solicitud</button>
+</div>
+
+<div class="card-section">
+    <h2>Información de Cuenta 👤</h2>
+    <div class="stat-item">
+        <span class="stat-label">Nombre</span>
+        <span class="stat-value">{{NOMBRE_USUARIO}}</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-label">Correo</span>
+        <span class="stat-value">{{EMAIL_USUARIO}}</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-label">Teléfono</span>
+        <span class="stat-value">{{TELEFONO_USUARIO}}</span>
+    </div>
+    <div class="stat-item">
+        <span class="stat-label">Empresa</span>
+        <span class="stat-value">{{EMPRESA_USUARIO}}</span>
+    </div>
+    <button class="btn-new-request" onclick="location='/api/editar-perfil'" style="background:#2563eb;">✏️ Editar Perfil</button>
+</div>
+
+<div class="requests-table">
+    <h2>Mis Solicitudes</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID Solicitud</th>
+                <th>Tipo de Certificado</th>
+                <th>Fecha de Solicitud</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{SOLICITUDES}}
+        </tbody>
+    </table>
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

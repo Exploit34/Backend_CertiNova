@@ -8,10 +8,13 @@ const {
 } = require('../controllers/solicitudController');
 const procesarPagos = require('../controllers/procesarPago');
 const login = require('../controllers/login');
+const resgister = require('../controllers/register');
 
 const adminMiddleware = require(
     '../middleware/adminMiddleware'
 );
+
+const userMiddleware = require('../middleware/userMiddleware');
 
 router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../views/index.html'));
@@ -19,6 +22,10 @@ router.get('/', (req, res) => {
 
 router.get('/admin', adminMiddleware, (req, res) => {
     res.sendFile(path.join(__dirname, '../views/admin.html'));
+});
+
+router.get('/user', userMiddleware, (req, res) => {
+    res.sendFile(path.join(__dirname, '../views/user.html'));
 });
 
 router.get('/login', (req, res) => {
@@ -40,5 +47,7 @@ router.post('/solicitud', crearSolicitud);
 router.get('/pago-certificado', procesarPagos);
 
 router.post('/login', login);
+
+router.post('/register', resgister);
 
 module.exports = router;

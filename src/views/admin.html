@@ -6,40 +6,213 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Panel Admin</title>
+<title>Panel Administrador - CertiNova</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="/style.css">
 
 <style>
 
-body{
-    padding:40px;
+.admin-container{
+    padding:140px 80px 80px;
+    min-height:100vh;
+    max-width:1200px;
+    margin:0 auto;
+}
+
+.admin-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:40px;
+}
+
+.admin-header h1{
+    font-size:48px;
+    font-weight:800;
+    margin:0;
+}
+
+.admin-header .user-info{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:rgba(255,255,255,0.04);
+    padding:10px 18px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.06);
+}
+
+.admin-stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin-bottom:40px;
+    width:100%;
+}
+
+.stat-box{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.06);
+    border-radius:14px;
+    padding:20px;
+    min-height:120px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.stat-box h3{
+    color:#cbd5e1;
+    font-size:12px;
+    margin-bottom:8px;
+    text-transform:uppercase;
+    font-weight:600;
+    letter-spacing:1px;
+}
+
+.stat-box .value{
+    color:#00ffcc;
+    font-size:28px;
+    font-weight:800;
+    word-break:break-word;
+    white-space:normal;
+}
+
+.table-container{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:24px;
+    padding:35px;
+    overflow-x:auto;
+}
+
+.table-container h2{
+    font-size:28px;
+    margin-bottom:25px;
+    font-weight:700;
 }
 
 table{
     width:100%;
     border-collapse:collapse;
-    margin-top:40px;
 }
 
 th, td{
-    padding:18px;
-    border:1px solid rgba(255,255,255,0.1);
+    padding:16px 12px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
     text-align:left;
 }
 
 th{
+    background:transparent;
+    color:#00ffcc;
+    font-weight:700;
+    font-size:14px;
+    text-transform:uppercase;
+}
+
+tr:hover{
+    background:rgba(0,255,204,0.05);
+}
+
+td{
+    color:#cbd5e1;
+}
+
+.badge{
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:12px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.badge-success{
+    background:rgba(16,185,129,0.2);
+    color:#10b981;
+}
+
+.badge-pending{
+    background:rgba(245,158,11,0.2);
+    color:#f59e0b;
+}
+
+.action-btn{
+    padding:8px 16px;
+    border:none;
+    border-radius:8px;
     background:#00ffcc;
     color:black;
+    font-weight:600;
+    font-size:12px;
+    cursor:pointer;
+    transition:0.3s;
 }
 
-tr{
-    background:rgba(255,255,255,0.03);
+.action-btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 15px rgba(0,255,204,0.4);
 }
 
-h1{
-    font-size:50px;
-    margin-bottom:20px;
+.logout-btn{
+    padding:12px 28px;
+    border:none;
+    border-radius:12px;
+    background:#ff6b6b;
+    color:white;
+    font-weight:700;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.logout-btn:hover{
+    background:#ff5252;
+    transform:translateY(-2px);
+}
+
+@media(max-width:900px){
+    .admin-container{
+        padding:100px 20px 80px;
+    }
+
+    .admin-header{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    .admin-header h1{
+        font-size:40px;
+    }
+
+    .admin-stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .table-container{
+        padding:20px;
+    }
+
+    table{
+        font-size:14px;
+    }
+
+    th, td{
+        padding:12px 8px;
+    }
+}
+
+@media(max-width:600px){
+    .admin-stats{
+        grid-template-columns:1fr;
+    }
+
+    .admin-header h1{
+        font-size:28px;
+    }
 }
 
 </style>
@@ -48,33 +221,89 @@ h1{
 
 <body>
 
-<h1>
-Panel Administrador 🚀
-</h1>
+<div class="background">
 
-<table>
+<div class="blur blur1"></div>
+<div class="blur blur2"></div>
+<div class="blur blur3"></div>
 
-<thead>
+</div>
 
-<tr>
+<nav>
 
-<th>ID</th>
-<th>Nombre</th>
-<th>Correo</th>
-<th>Documento</th>
-<th>Certificado</th>
+<div class="logo">
+CertiNova
+</div>
 
-</tr>
+<ul>
+<li><a href="#">Dashboard</a></li>
+<li><a href="#">Reportes</a></li>
+<li><a href="#">Configuración</a></li>
+</ul>
 
-</thead>
+<!-- <button onclick="location='/logout'" class="btn-nav">
+    Cerrar Sesión
+</button> -->
 
-<tbody>
+    <div class="admin-header">
+        <div class="user-info">
+            <span>👤 Admin</span>
+            <button class="logout-btn" onclick="location='/api/login'">Salir</button>
+        </div>
+    </div>
 
-{{DATOS}}
+</nav>
 
-</tbody>
+<div class="admin-container">
 
-</table>
+<div class="admin-header">
+    <h1>Panel Administrador 🚀</h1>
+    <!-- <div class="user-info">
+        <span>👤 Admin</span>
+        <button class="logout-btn" onclick="location='/logout'">Salir</button>
+    </div> -->
+</div>
+
+<div class="admin-stats">
+    <div class="stat-box">
+        <h3>Total Usuarios</h3>
+        <div class="value">{{TOTAL_USUARIOS}}</div>
+    </div>
+    <div class="stat-box">
+        <h3>Solicitudes Pendientes</h3>
+        <div class="value">{{SOLICITUDES_PENDIENTES}}</div>
+    </div>
+    <div class="stat-box">
+        <h3>Certificados Generados</h3>
+        <div class="value">{{CERTIFICADOS_GENERADOS}}</div>
+    </div>
+    <div class="stat-box">
+        <h3>Ingresos Totales</h3>
+        <div class="value">${{INGRESOS_TOTALES}}</div>
+    </div>
+</div>
+
+<div class="table-container">
+    <h2>Solicitudes Recientes</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Documento</th>
+                <th>Certificado</th>
+                <th>Estado</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{DATOS}}
+        </tbody>
+    </table>
+</div>
+
+</div>
 
 </body>
 

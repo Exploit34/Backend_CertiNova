@@ -17,6 +17,8 @@ const login = async (req, res) => {
         
         if (usuario.role === 'admin') {
             return res.redirect('/api/admin');
+        } else if(usuario.role === 'user') {
+            return res.redirect('/api/user');
         }
         
     } catch (error) {
